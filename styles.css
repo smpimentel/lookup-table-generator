@@ -1,0 +1,60 @@
+.parameter-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.parameter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.parameter-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.value-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.value-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    background-color: #f3f4f6;
+    border-radius: 0.25rem;
+}
+
+.delete-btn {
+    padding: 0.25rem;
+    color: #dc2626;
+    border-radius: 9999px;
+    transition: background-color 0.2s;
+}
+
+.delete-btn:hover {
+    background-color: #fee2e2;
+}
+
+.preview-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.preview-table th,
+.preview-table td {
+    padding: 0.5rem;
+    border: 1px solid #e5e7eb;
+}
+
+.preview-table th {
+    background-color: #f9fafb;
+    font-weight: 600;
+}

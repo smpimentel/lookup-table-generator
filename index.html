@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lookup Table Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+        <div class="mb-8 flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                    Lookup Table Generator
+                </h1>
+                <p class="text-gray-600">
+                    Create parameter combinations with proper formatting
+                </p>
+            </div>
+            <div class="flex gap-4">
+                <input type="file" id="importInput" accept=".json" class="hidden" />
+                <button id="importBtn" 
+                        class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" 
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Import
+                </button>
+                <button id="saveBtn" 
+                        class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" 
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                    </svg>
+                    Save
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <form id="parameterForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="text" id="paramName" placeholder="Parameter name" class="px-4 py-2 border rounded-lg">
+                <select id="paramType" class="px-4 py-2 border rounded-lg">
+                    <option value="NUMBER">Number</option>
+                    <option value="LENGTH">Length</option>
+                    <option value="AREA">Area</option>
+                    <option value="VOLUME">Volume</option>
+                    <option value="ANGLE">Angle</option>
+                    <option value="OTHER">Other</option>
+                </select>
+                <select id="paramUnit" class="px-4 py-2 border rounded-lg md:col-span-2"></select>
+                <button type="submit" class="flex items-center justify-center gap-2 px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 md:col-span-2">
+                    Add Parameter
+                </button>
+            </form>
+        </div>
+
+        <div id="parameterList" class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <!-- Parameters will be inserted here -->
+        </div>
+
+        <div id="mappingRules" class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-4">Parameter Mapping Rules</h2>
+            <div id="mappingList" class="space-y-4"></div>
+            <button id="addMapping" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                Add Mapping Rule
+            </button>
+        </div>
+
+        <div id="previewSection" class="bg-white rounded-lg shadow-md p-6 hidden">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold">Generated Table</h2>
+                <button id="downloadBtn" class="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" 
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Download CSV
+                </button>
+            </div>
+            <div id="previewTable" class="overflow-x-auto">
+                <!-- Table will be inserted here -->
+            </div>
+        </div>
+
+        <div id="notification" class="fixed top-4 right-4 max-w-sm bg-gray-800 text-white p-4 rounded-lg shadow-lg transform transition-transform duration-300 translate-y-[-150%]">
+            <p id="notificationText"></p>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/managers.js"></script>
+    <script src="js/mapping-manager.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
